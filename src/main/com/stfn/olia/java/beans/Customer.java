@@ -1,10 +1,12 @@
 package beans;
 
+import DAO.Identificator;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Customer extends Person implements User {
+public class Customer extends Person implements User, Identificator<Integer> {
     private int id;
     private String login;
     private String password;
@@ -34,7 +36,7 @@ public class Customer extends Person implements User {
         this.orders=new ArrayList<>();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

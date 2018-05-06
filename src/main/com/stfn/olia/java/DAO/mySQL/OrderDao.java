@@ -5,6 +5,7 @@ import DAO.DaoException;
 import beans.Order;
 import beans.OrderStatus;
 import beans.Service;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class OrderDao extends AbstractDao<Order, Integer> {
+    private static final Logger log = Logger.getLogger(AbstractDao.class);
+
     public OrderDao(Connection connection) {
         super(connection);
     }
@@ -21,13 +24,14 @@ public class OrderDao extends AbstractDao<Order, Integer> {
     @Override
     public String getCreateQuery() {
         return "INSERT INTO Order (car_brand,car_model,license_plate,description,reception_point," +
-                "status_id,master_id,customer_id) VALUES (?,?,?,?,?,?,?,?);";
+                "status_id,master_id,customer_id) " +
+                "VALUES (?,?,?,?,?,(SELECT status_id FROM Order_status WHERE state=?),?,?);";
     }
 
     @Override
     public String getSelectQuery() {
-        return "SELECT * FROM Order o JOIN Service_has_Order USING(order_id)" +
-                " JOIN Service USING(service_id) JOIN Order_status s ON(o.status_id=s.status_id) WHERE order_id=";
+        return "SELECT * FROM Order o LEFT JOIN Service_has_Order USING(order_id) " +
+                "LEFT JOIN Service USING(service_id) JOIN Order_status s ON(o.status_id=s.status_id) WHERE order_id=";
     }
 
     @Override
@@ -122,5 +126,38 @@ public class OrderDao extends AbstractDao<Order, Integer> {
         } catch (SQLException e) {
             throw new DaoException(e);
         }
+    }
+
+    @Override
+    public Order create(Order object) throws DaoException {
+        Order rezult = super.create(object);
+        String query = "INSERT INTO Service_has_Order (service_id,order_id) VALUES ";
+        for (Service service : rezult.getServices()) {
+            query += "(" + service.getId() + "," + rezult.getId() + ")";
+        }
+        query += ";";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.execute();
+        } catch (Exception e) {
+            throw new DaoException(e);
+        }
+        rezult = read(rezult.getId());
+        return rezult;
+    }
+
+    public Collection<Order> readByCustomerId(Order obj) throws DaoException {
+        Collection<Order> someList;
+        String query = "SELECT * FROM Order o JOIN Service_has_Order USING(order_id)" +
+                " JOIN Service USING(service_id) JOIN Order_status s ON(o.status_id=s.status_id)" +
+                " WHERE customer_id=?;";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, obj.getCustomerId());
+            ResultSet resultSet = statement.executeQuery();
+            someList = parseResultSet(resultSet);
+        } catch (Exception e) {
+            log.error(e + "Error with read databases");
+            throw new DaoException();
+        }
+        return someList;
     }
 }

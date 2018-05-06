@@ -1,8 +1,10 @@
 package beans;
 
+import DAO.Identificator;
+
 import java.time.LocalDate;
 
-public class Master extends Person{
+public class Master extends Person implements Identificator<Integer> {
     private int id;
     private String post;
     private String workPlace;
@@ -33,7 +35,7 @@ public class Master extends Person{
         this.status = status;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

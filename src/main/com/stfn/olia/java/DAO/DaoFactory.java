@@ -2,6 +2,7 @@ package DAO;
 
 public interface DaoFactory<T> {
 
+    @FunctionalInterface
     public interface DaoCreator<T> {
         public GenericDao create(T connection);
     }

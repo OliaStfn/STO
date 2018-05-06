@@ -3,6 +3,7 @@ package DAO.mySQL;
 import DAO.AbstractDao;
 import DAO.DaoException;
 import beans.Admin;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class AdminDao extends AbstractDao<Admin, Integer> {
+    private static final Logger log = Logger.getLogger(AbstractDao.class);
     public AdminDao(Connection connection) {
         super(connection);
     }
