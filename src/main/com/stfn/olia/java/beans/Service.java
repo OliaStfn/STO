@@ -1,6 +1,8 @@
 package beans;
 
-public class Service {
+import DAO.Identificator;
+
+public class Service implements Identificator<Integer> {
     private int id;
     private String name;
     private String category;
@@ -18,7 +20,7 @@ public class Service {
         this.price = price;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

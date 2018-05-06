@@ -1,8 +1,11 @@
 package beans;
 
-import java.time.LocalDate;
+import DAO.Identificator;
 
-public class Order {
+import java.time.LocalDate;
+import java.util.HashSet;
+
+public class Order implements Identificator<Integer> {
     private int id;
     private String carBrand;
     private String carModel;
@@ -13,6 +16,7 @@ public class Order {
     private OrderStatus status;
     private int masterId;
     private int customerId;
+    private HashSet<Service> services;
 
     public Order() {
         this.carBrand = "none";
@@ -24,6 +28,7 @@ public class Order {
         this.status = OrderStatus.WAITING;
         this.masterId = 0;
         this.customerId = 0;
+        this.services = new HashSet<>();
     }
 
     public Order(String carBrand, String carModel, String licensePlate, String receptionPoint,
@@ -37,9 +42,10 @@ public class Order {
         this.status = status;
         this.masterId = masterId;
         this.customerId = customerId;
+        this.services = new HashSet<>();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -117,5 +123,21 @@ public class Order {
 
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
+    }
+
+    public HashSet<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(HashSet<Service> services) {
+        this.services = services;
+    }
+
+    public void addService(Service service) {
+        services.add(service);
+    }
+
+    public void removeService(Service service) {
+        services.remove(service);
     }
 }

@@ -1,7 +1,5 @@
 package DAO;
 
-import java.io.Serializable;
-
-public interface Identificator<PK extends Serializable> {
-    int getId();
+public interface Identificator<PK> {
+    PK getId();
 }

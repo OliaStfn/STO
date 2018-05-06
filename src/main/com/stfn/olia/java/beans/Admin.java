@@ -1,8 +1,10 @@
 package beans;
 
+import DAO.Identificator;
+
 import java.time.LocalDateTime;
 
-public class Admin implements User {
+public class Admin implements User, Identificator<Integer> {
     private int id;
     private String login;
     private String password;
@@ -26,7 +28,7 @@ public class Admin implements User {
         this.createdDate = LocalDateTime.now();
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

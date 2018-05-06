@@ -18,6 +18,6 @@ public class DaoException extends Exception {
     }
 
     protected DaoException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super(message, cause, enableSuppression, writableStackTrace);
+        super("Dao Exception - " + message, cause, enableSuppression, writableStackTrace);
     }
 }

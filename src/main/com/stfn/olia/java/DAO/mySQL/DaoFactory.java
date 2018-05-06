@@ -1,7 +1,6 @@
 package DAO.mySQL;
 
 import DAO.DaoException;
-import DAO.DaoFactory;
 import DAO.GenericDao;
 import org.apache.log4j.Logger;
 
@@ -12,8 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class MySQLDaoFactory implements DaoFactory<Connection> {
-    private static final Logger log = Logger.getLogger(MySQLDaoFactory.class);
+public class DaoFactory implements DAO.DaoFactory {
+    private static final Logger log = Logger.getLogger(DaoFactory.class);
     private static String driverName = "com.mysql.jdbc.Driver";
     private static String URL = "jdbc:mysql://localhost/sto?useSSL=false";
     private static String USERNAME = "root";
@@ -51,7 +50,7 @@ public class MySQLDaoFactory implements DaoFactory<Connection> {
     }
 
 
-    public MySQLDaoFactory() {
-        allDao = new HashMap<Class, DaoFactory.DaoCreator>();
+    public DaoFactory() {
+        allDao = new HashMap<Class, DAO.DaoFactory.DaoCreator>();
     }
 }

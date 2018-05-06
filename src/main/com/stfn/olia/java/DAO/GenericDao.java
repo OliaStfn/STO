@@ -1,13 +1,11 @@
 package DAO;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Collection;
 
-public interface GenericDao<T, PK extends Serializable> {
-    T create() throws DaoException;
-    T createInDB(T object) throws DaoException;
+public interface GenericDao<T, PK> {
+    T create(T object) throws DaoException;
     T read(PK key)throws DaoException;
     void update(T obj)throws DaoException;
     void delete(T obj)throws DaoException;
-    ArrayList<T> readAll()throws DaoException;
+    Collection<T> readAll()throws DaoException;
 }
