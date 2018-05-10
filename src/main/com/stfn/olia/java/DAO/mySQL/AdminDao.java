@@ -35,8 +35,8 @@ public class AdminDao extends AbstractDao<Admin, Integer> {
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE Administrator a JOIN USER u USING(login) SET a.login=?, " +
-                "u.login=?, u.password=?, u.email=? WHERE administrator_id=?;";
+        return "UPDATE Administrator a JOIN USER u USING(login) SET u.login=?, " +
+                "a.login=?, u.password=?, u.email=? WHERE administrator_id=?;";
     }
 
     @Override

@@ -17,7 +17,7 @@ public class CustomerDao extends AbstractDao<Customer, Integer> {
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO Customer (phone_number, login, person_id) VALUES (?,?,(SELECT last_insert_id());";
+        return "INSERT INTO Customer (phone_number, login, person_id) VALUES (?,?,(SELECT last_insert_id()));";
     }
 
     @Override

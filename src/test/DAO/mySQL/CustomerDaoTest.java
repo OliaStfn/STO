@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class CustomerDaoTest {
     @Test
     public void create() throws Exception {
-        Customer customer = new Customer("Оля","Стефанишин", LocalDate.of(1999,3,22),"kardasholga","2486",
+        Customer customer = new Customer("Оля","Стефанишин", LocalDate.of(1999,3,22),"kardash3","2486",
                 "kardash22@gmail.com","0993205589");
         Factory factory = new Factory();
         GenericDao dao = factory.getDao(factory.getConnection(), Customer.class);

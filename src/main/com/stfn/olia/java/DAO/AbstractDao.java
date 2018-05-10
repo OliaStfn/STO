@@ -93,8 +93,6 @@ public abstract class AbstractDao<T extends Identificator<PK>, PK extends Intege
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statementUpdate(statement, obj);
             int changedFields = statement.executeUpdate();
-            if (changedFields != 1) throw new DaoException("During update more than 1 field");
-            statement.close();
         } catch (Exception e) {
             log.error(e);
             throw new DaoException();

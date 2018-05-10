@@ -16,7 +16,7 @@ public class OrderDaoTest {
     public void create() throws Exception {
         Order order = new Order("Opel","Astra","AT2365AC",
                 "Івано-Франківськ", LocalDate.now(), OrderStatus.WAITING,
-                1,1);
+                3,2);
         Factory factory = new Factory();
         GenericDao dao = factory.getDao(factory.getConnection(), Order.class);
         order = (Order) dao.create(order);

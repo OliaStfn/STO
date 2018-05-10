@@ -28,7 +28,7 @@ public class Order implements Identificator<Integer> {
         this.status = OrderStatus.WAITING;
         this.masterId = 0;
         this.customerId = 0;
-        this.services = new HashSet<>();
+        this.services = new HashSet<>(0);
     }
 
     public Order(String carBrand, String carModel, String licensePlate, String receptionPoint,
@@ -42,7 +42,7 @@ public class Order implements Identificator<Integer> {
         this.status = status;
         this.masterId = masterId;
         this.customerId = customerId;
-        this.services = new HashSet<>();
+        this.services = new HashSet<>(0);
     }
 
     public Integer getId() {

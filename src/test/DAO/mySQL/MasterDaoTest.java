@@ -26,7 +26,7 @@ public class MasterDaoTest {
     @Test
     public void read() throws Exception {
         Factory factory = new Factory();
-        GenericDao dao = factory.getDao(factory.getConnection(), AdminDao.class);
+        GenericDao dao = factory.getDao(factory.getConnection(), Master.class);
         Master master = (Master) dao.read(1);
         assertNotNull(master);
         System.out.println(master.toString());
@@ -37,7 +37,7 @@ public class MasterDaoTest {
         Factory factory = new Factory();
         GenericDao dao = factory.getDao(factory.getConnection(), Master.class);
         Master master = (Master) dao.read(1);
-        master.setName("Іван");
+        master.setName("Данило");
         dao.update(master);
     }
 

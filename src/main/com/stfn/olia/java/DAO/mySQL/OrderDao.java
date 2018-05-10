@@ -7,10 +7,7 @@ import beans.OrderStatus;
 import beans.Service;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -23,33 +20,33 @@ public class OrderDao extends AbstractDao<Order, Integer> {
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO Order (car_brand,car_model,license_plate,description,reception_point," +
+        return "INSERT INTO sto.Order (car_brand,car_model,license_plate,description,reception_point,order_date," +
                 "status_id,master_id,customer_id) " +
-                "VALUES (?,?,?,?,?,(SELECT status_id FROM Order_status WHERE state=?),?,?);";
+                "VALUES (?,?,?,?,?,?,(SELECT status_id FROM Order_status WHERE state=?),?,?);";
     }
 
     @Override
     public String getSelectQuery() {
-        return "SELECT * FROM Order o LEFT JOIN Service_has_Order USING(order_id) " +
+        return "SELECT * FROM sto.Order o LEFT JOIN Service_has_Order USING(order_id) " +
                 "LEFT JOIN Service USING(service_id) JOIN Order_status s ON(o.status_id=s.status_id) WHERE order_id=";
     }
 
     @Override
     public String getSelectAllQuery() {
-        return "SELECT * FROM Order o JOIN Service_has_Order USING(order_id)" +
+        return "SELECT * FROM sto.Order o JOIN Service_has_Order USING(order_id)" +
                 " JOIN Service USING(service_id) JOIN Order_status s ON(o.status_id=s.status_id);";
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE Order SET car_brand=?,car_model=?,license_plate=?,description=?," +
+        return "UPDATE sto.Order SET car_brand=?,car_model=?,license_plate=?,description=?," +
                 "reception_point=?,status_id=(SELECT status_id FROM Order_status WHERE state=?)," +
                 "master_id=?,customer_id=? WHERE order_id=?;";
     }
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM Order WHERE order_id=?;";
+        return "DELETE FROM sto.Order WHERE order_id=?;";
     }
 
     @Override
@@ -59,17 +56,20 @@ public class OrderDao extends AbstractDao<Order, Integer> {
             while (resultSet.next()) {
                 Order order = new Order();
                 boolean orderExist = false;
-
                 Service service = new Service();
-                service.setId(resultSet.getInt("service_id"));
-                service.setName(resultSet.getString("name"));
-                service.setCategory(resultSet.getString("category"));
-                service.setPrice(resultSet.getDouble("price"));
 
-                for (Order item : orders) {
-                    if (item.getId() == resultSet.getInt("order_id")) {
-                        orderExist = true;
-                        item.addService(service);
+                Integer temp = resultSet.getInt("service_id");
+                if (temp != 0) {
+                    service.setId(resultSet.getInt("service_id"));
+                    service.setName(resultSet.getString("name"));
+                    service.setCategory(resultSet.getString("category"));
+                    service.setPrice(resultSet.getDouble("price"));
+
+                    for (Order item : orders) {
+                        if (item.getId() == resultSet.getInt("order_id")) {
+                            orderExist = true;
+                            item.addService(service);
+                        }
                     }
                 }
 
@@ -77,7 +77,7 @@ public class OrderDao extends AbstractDao<Order, Integer> {
                     order.setId(resultSet.getInt("order_id"));
                     order.setCarBrand(resultSet.getString("car_brand"));
                     order.setCarModel(resultSet.getString("car_model"));
-                    order.setLicensePlate(resultSet.getString("licence_plate"));
+                    order.setLicensePlate(resultSet.getString("license_plate"));
                     order.setDescription(resultSet.getString("description"));
                     order.setReceptionPoint(resultSet.getString("reception_point"));
                     order.setOrderDate(resultSet.getDate("order_date").toLocalDate());
@@ -85,7 +85,9 @@ public class OrderDao extends AbstractDao<Order, Integer> {
                     order.setMasterId(resultSet.getInt("master_id"));
                     order.setCustomerId(resultSet.getInt("customer_id"));
 
-                    order.addService(service);
+                    if (temp != 0)
+                        order.addService(service);
+
                     orders.add(order);
                 }
             }
@@ -120,9 +122,10 @@ public class OrderDao extends AbstractDao<Order, Integer> {
             statement.setString(3, obj.getLicensePlate());
             statement.setString(4, obj.getDescription());
             statement.setString(5, obj.getReceptionPoint());
-            statement.setString(6, obj.getStatus().toString());
-            statement.setInt(7, obj.getMasterId());
-            statement.setInt(8, obj.getCustomerId());
+            statement.setDate(6, Date.valueOf(obj.getOrderDate()));
+            statement.setString(7, obj.getStatus().toString());
+            statement.setInt(8, obj.getMasterId());
+            statement.setInt(9, obj.getCustomerId());
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -131,9 +134,13 @@ public class OrderDao extends AbstractDao<Order, Integer> {
     @Override
     public Order create(Order object) throws DaoException {
         Order rezult = super.create(object);
+        if (rezult.getServices() == null || rezult.getServices().size() == 0) return rezult;
+        int count = rezult.getServices().size();
         String query = "INSERT INTO Service_has_Order (service_id,order_id) VALUES ";
         for (Service service : rezult.getServices()) {
+            count--;
             query += "(" + service.getId() + "," + rezult.getId() + ")";
+            if (count != 0) query += ", ";
         }
         query += ";";
         try (PreparedStatement statement = connection.prepareStatement(query)) {

@@ -31,7 +31,7 @@ public class AdminDaoTest {
     public void update() throws Exception {
         Factory factory = new Factory();
         GenericDao dao = factory.getDao(factory.getConnection(), Admin.class);
-        Admin admin = (Admin) dao.read(1);
+        Admin admin = (Admin) dao.read(2);
         admin.setLogin("kardash1");
         dao.update(admin);
     }
