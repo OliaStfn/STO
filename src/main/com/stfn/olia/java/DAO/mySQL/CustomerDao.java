@@ -34,8 +34,8 @@ public class CustomerDao extends AbstractDao<Customer, Integer> {
     @Override
     public String getUpdateQuery() {
         return "UPDATE Customer c JOIN Person p USING(person_id) JOIN User u ON c.login=u.login " +
-                "SET c.phone_number=?, c.login=?, p.name=?, p.surname=?, p.date_of_birth=?," +
-                "u.login=?, u.password=?, u.email=? WHERE customer_id=?;";
+                "SET c.phone_number=?, p.name=?, p.surname=?, p.date_of_birth=?," +
+                " u.password=?, u.email=? WHERE customer_id=?;";
     }
 
     @Override
@@ -72,14 +72,12 @@ public class CustomerDao extends AbstractDao<Customer, Integer> {
     public void statementUpdate(PreparedStatement statement, Customer obj) throws DaoException {
         try {
             statement.setString(1, obj.getPhoneNumber());
-            statement.setString(2, obj.getLogin());
-            statement.setString(3, obj.getName());
-            statement.setString(4, obj.getSurname());
-            statement.setDate(5, Date.valueOf(obj.getDateOfBirth()));
-            statement.setString(6, obj.getLogin());
-            statement.setString(7, obj.getPassword());
-            statement.setString(8, obj.getEmail());
-            statement.setInt(9, obj.getId());
+            statement.setString(2, obj.getName());
+            statement.setString(3, obj.getSurname());
+            statement.setDate(4, Date.valueOf(obj.getDateOfBirth()));
+            statement.setString(5, obj.getPassword());
+            statement.setString(6, obj.getEmail());
+            statement.setInt(7, obj.getId());
         } catch (SQLException e) {
             throw new DaoException(e);
         }

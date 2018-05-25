@@ -35,8 +35,7 @@ public class AdminDao extends AbstractDao<Admin, Integer> {
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE Administrator a JOIN USER u USING(login) SET u.login=?, " +
-                "a.login=?, u.password=?, u.email=? WHERE administrator_id=?;";
+        return "UPDATE Administrator a JOIN USER u USING(login) u.password=?, u.email=? WHERE a.administrator_id=?;";
     }
 
     @Override
@@ -69,11 +68,9 @@ public class AdminDao extends AbstractDao<Admin, Integer> {
     @Override
     public void statementUpdate(PreparedStatement statement, Admin obj) throws DaoException {
         try {
-            statement.setString(1, obj.getLogin());
-            statement.setString(2, obj.getLogin());
-            statement.setString(3, obj.getPassword());
-            statement.setString(4, obj.getEmail());
-            statement.setInt(5, obj.getId());
+            statement.setString(1, obj.getPassword());
+            statement.setString(2, obj.getEmail());
+            statement.setInt(3, obj.getId());
         } catch (SQLException e) {
             throw new DaoException(e);
         }

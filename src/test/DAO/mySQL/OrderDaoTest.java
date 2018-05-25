@@ -4,6 +4,7 @@ import DAO.GenericDao;
 import beans.Master;
 import beans.Order;
 import beans.OrderStatus;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class OrderDaoTest {
+    /*@Ignore
     @Test
     public void create() throws Exception {
         Order order = new Order("Opel","Astra","AT2365AC",
@@ -21,7 +23,7 @@ public class OrderDaoTest {
         GenericDao dao = factory.getDao(factory.getConnection(), Order.class);
         order = (Order) dao.create(order);
         assertNotNull(order);
-    }
+    }*/
 
     @Test
     public void read() throws Exception {
@@ -32,6 +34,7 @@ public class OrderDaoTest {
         System.out.println(findOrder.toString());
     }
 
+    /*@Ignore
     @Test
     public void update() throws Exception {
         Factory factory = new Factory();
@@ -41,13 +44,14 @@ public class OrderDaoTest {
         dao.update(order);
     }
 
+    @Ignore
     @Test
     public void delete() throws Exception {
         Factory factory = new Factory();
         GenericDao dao = factory.getDao(factory.getConnection(), Order.class);
         Order order = (Order) dao.read(1);
         dao.delete(order);
-    }
+    }*/
 
     @Test
     public void readAll() throws Exception {

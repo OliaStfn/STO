@@ -3,6 +3,7 @@ package DAO.mySQL;
 import DAO.GenericDao;
 import beans.Master;
 import beans.MasterStatus;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.*;
 
 public class MasterDaoTest {
+    /*@Ignore
     @Test
     public void create() throws Exception {
         Master master = new Master("Іван","Семиген", LocalDate.of(1985,2,11)
@@ -21,7 +23,7 @@ public class MasterDaoTest {
         GenericDao dao = factory.getDao(factory.getConnection(), Master.class);
         master = (Master) dao.create(master);
         assertNotNull(master);
-    }
+    }*/
 
     @Test
     public void read() throws Exception {
@@ -32,22 +34,24 @@ public class MasterDaoTest {
         System.out.println(master.toString());
     }
 
+     /*@Ignore
     @Test
     public void update() throws Exception {
-        Factory factory = new Factory();
+       Factory factory = new Factory();
         GenericDao dao = factory.getDao(factory.getConnection(), Master.class);
         Master master = (Master) dao.read(1);
         master.setName("Данило");
         dao.update(master);
     }
 
+    @Ignore
     @Test
     public void delete() throws Exception {
         Factory factory = new Factory();
         GenericDao dao = factory.getDao(factory.getConnection(), Master.class);
         Master findMaster = (Master) dao.read(1);
         dao.delete(findMaster);
-    }
+    }*/
 
     @Test
     public void readAll() throws Exception {

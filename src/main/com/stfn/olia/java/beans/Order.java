@@ -17,6 +17,7 @@ public class Order implements Identificator<Integer> {
     private int masterId;
     private int customerId;
     private HashSet<Service> services;
+    private double allPrice;
 
     public Order() {
         this.carBrand = "none";
@@ -29,6 +30,7 @@ public class Order implements Identificator<Integer> {
         this.masterId = 0;
         this.customerId = 0;
         this.services = new HashSet<>(0);
+        setAllPrice();
     }
 
     public Order(String carBrand, String carModel, String licensePlate, String receptionPoint,
@@ -43,6 +45,7 @@ public class Order implements Identificator<Integer> {
         this.masterId = masterId;
         this.customerId = customerId;
         this.services = new HashSet<>(0);
+        setAllPrice();
     }
 
     public Integer getId() {
@@ -131,13 +134,22 @@ public class Order implements Identificator<Integer> {
 
     public void setServices(HashSet<Service> services) {
         this.services = services;
+        setAllPrice();
     }
 
     public void addService(Service service) {
         services.add(service);
+        setAllPrice();
     }
 
-    public void removeService(Service service) {
-        services.remove(service);
+    public double getAllPrice() {
+        return allPrice;
+    }
+
+    public void setAllPrice() {
+        allPrice = 0;
+        for (Service service : this.services) {
+            allPrice += service.getPrice();
+        }
     }
 }
