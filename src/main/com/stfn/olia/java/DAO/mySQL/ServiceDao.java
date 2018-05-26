@@ -20,7 +20,7 @@ public class ServiceDao extends AbstractDao<Service, Integer> {
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO Service (name,category,price) VALUES (?,?,?);";
+        return "INSERT INTO Service (name,category,price,need_department) VALUES (?,?,?);";
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ServiceDao extends AbstractDao<Service, Integer> {
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE Service SET name=?,category=?,price=? WHERE service_id=?;";
+        return "UPDATE Service SET name=?,category=?,price=?, need_department=? WHERE service_id=?;";
     }
 
     @Override
@@ -55,6 +55,7 @@ public class ServiceDao extends AbstractDao<Service, Integer> {
                 temp.setName(resultSet.getString("name"));
                 temp.setCategory(resultSet.getString("category"));
                 temp.setPrice(resultSet.getDouble("price"));
+                temp.setNeedDepartment(resultSet.getBoolean("need_department"));
 
                 services.add(temp);
             }
@@ -70,7 +71,8 @@ public class ServiceDao extends AbstractDao<Service, Integer> {
             statement.setString(1, obj.getName());
             statement.setString(2, obj.getCategory());
             statement.setDouble(3, obj.getPrice());
-            statement.setInt(4, obj.getId());
+            statement.setBoolean(4, obj.isNeedDepartment());
+            statement.setInt(5, obj.getId());
         } catch (SQLException e) {
             throw new DaoException(e);
         }
@@ -82,6 +84,7 @@ public class ServiceDao extends AbstractDao<Service, Integer> {
             statement.setString(1, obj.getName());
             statement.setString(2, obj.getCategory());
             statement.setDouble(3, obj.getPrice());
+            statement.setBoolean(4,obj.isNeedDepartment());
         } catch (SQLException e) {
             throw new DaoException(e);
         }

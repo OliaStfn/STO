@@ -7,17 +7,21 @@ public class Service implements Identificator<Integer> {
     private String name;
     private String category;
     private double price;
+    private boolean needDepartment;
 
     public Service() {
         this.name = "none";
         this.category = "none";
         this.price = 0;
+        this.needDepartment=false;
     }
 
-    public Service(String name, String category, double price) {
+    public Service(String name, String category, double price, boolean needDepartment) {
         this.name = name;
         this.category = category;
         this.price = price;
+        this.needDepartment=needDepartment;
+
     }
 
     public Integer getId() {
@@ -50,5 +54,13 @@ public class Service implements Identificator<Integer> {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public boolean isNeedDepartment() {
+        return needDepartment;
+    }
+
+    public void setNeedDepartment(boolean needDepartment) {
+        this.needDepartment = needDepartment;
     }
 }

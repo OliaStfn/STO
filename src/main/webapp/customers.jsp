@@ -28,13 +28,14 @@
                 <thead>
                 <tr class="filters">
                     <th style="width: 5%"><input type="text" class="form-control" placeholder="#" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Ім'я" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Прізвище" disabled></th>
+                    <th style="width: 8%"><input type="text" class="form-control" placeholder="Ім'я" disabled></th>
+                    <th style="width: 10%"><input type="text" class="form-control" placeholder="Прізвище" disabled></th>
                     <th><input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
                                class="form-control" placeholder="Дата народження" disabled></th>
                     <th><input type="email" class="form-control" placeholder="Електронна пошта" disabled></th>
-                    <th><input type="tel" class="form-control" placeholder="Телефон" disabled></th>
+                    <th style="width: 8%"><input type="tel" class="form-control" placeholder="Телефон" disabled></th>
                     <th><input type="datetime" class="form-control" placeholder="Дата реєстрації" disabled></th>
+                    <th><input type="text" class="form-control" placeholder="Використання мікроавтобуса" disabled></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -48,6 +49,13 @@
                         <td>${customer.phoneNumber}</td>
                         <td>${customer.createdDate.dayOfMonth}.${customer.createdDate.monthValue}.${customer.createdDate.year}<br>
                                 ${customer.createdDate.hour}:${customer.createdDate.minute}:${customer.createdDate.second}</td>
+                        <%--<td>${customer.needBus}</td>--%>
+                        <c:if test="${customer.needBus}">
+                            <td>+</td>
+                        </c:if>
+                        <c:if test="${!customer.needBus}">
+                            <td>-</td>
+                        </c:if>
                     </tr>
                 </c:forEach>
                 </tbody>

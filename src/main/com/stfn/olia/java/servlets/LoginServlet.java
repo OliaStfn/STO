@@ -4,6 +4,7 @@ import DAO.DaoException;
 import DAO.DaoFactory;
 import DAO.GenericDao;
 import DAO.mySQL.Factory;
+import beans.Admin;
 import beans.Customer;
 
 import javax.servlet.ServletException;
@@ -22,20 +23,33 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         DaoFactory factory = new Factory();
         try {
-            GenericDao dao = factory.getDao(factory.getConnection(), Customer.class);
-            ArrayList<Customer> customers = (ArrayList<Customer>) dao.readAll();
+            GenericDao dao = factory.getDao(factory.getConnection(), Admin.class);
+            ArrayList<Admin> admins = (ArrayList<Admin>) dao.readAll();
             boolean isFound = false;
-            for (Customer customer : customers) {
-                if (customer.getLogin().equals(username) &&
-                        customer.getPassword().equals(password)) {
+            for (Admin admin : admins) {
+                if (admin.getLogin().equals(username) &&
+                        admin.getPassword().equals(password)) {
                     isFound = true;
                     HttpSession session = request.getSession();
-                    session.setAttribute("user", customer);
-                    if (username.contains("admin") || username.contains("Admin"))
-                        session.setAttribute("userType", "admin");
-                    else
-                        session.setAttribute("userType", "customer");
+                    session.setMaxInactiveInterval(900);
+                    session.setAttribute("user", admin);
+                    session.setAttribute("userType", "admin");
                     response.sendRedirect("/home");
+                }
+            }
+            if (!isFound) {
+                dao = factory.getDao(factory.getConnection(), Customer.class);
+                ArrayList<Customer> customers = (ArrayList<Customer>) dao.readAll();
+                for (Customer customer : customers) {
+                    if (customer.getLogin().equals(username) &&
+                            customer.getPassword().equals(password)) {
+                        isFound = true;
+                        HttpSession session = request.getSession();
+                        session.setMaxInactiveInterval(900);
+                        session.setAttribute("user", customer);
+                        session.setAttribute("userType", "customer");
+                        response.sendRedirect("/home");
+                    }
                 }
             }
             if (!isFound) {
@@ -44,6 +58,5 @@ public class LoginServlet extends HttpServlet {
             }
         } catch (DaoException e) {
         }
-
     }
 }

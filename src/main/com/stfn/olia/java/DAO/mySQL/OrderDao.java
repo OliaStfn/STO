@@ -152,13 +152,13 @@ public class OrderDao extends AbstractDao<Order, Integer> {
         return rezult;
     }
 
-    public Collection<Order> readByCustomerId(Order obj) throws DaoException {
+    public Collection<Order> readByCustomerId(int id) throws DaoException {
         Collection<Order> someList;
         String query = "SELECT * FROM Order o JOIN Service_has_Order USING(order_id)" +
                 " JOIN Service USING(service_id) JOIN Order_status s ON(o.status_id=s.status_id)" +
                 " WHERE customer_id=?;";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
-            statement.setInt(1, obj.getCustomerId());
+            statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             someList = parseResultSet(resultSet);
         } catch (Exception e) {

@@ -14,6 +14,7 @@ public class Customer extends Person implements User, Identificator<Integer> {
     private String phoneNumber;
     private LocalDateTime createdDate;
     private ArrayList<Order> orders;
+    private boolean usedBus;
 
     public Customer() {
         super();
@@ -23,6 +24,7 @@ public class Customer extends Person implements User, Identificator<Integer> {
         this.phoneNumber = "none";
         createdDate = LocalDateTime.now();
         this.orders=new ArrayList<>();
+        this.usedBus=false;
 
     }
 
@@ -34,6 +36,7 @@ public class Customer extends Person implements User, Identificator<Integer> {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.orders=new ArrayList<>();
+        setUsedBus();
     }
 
     public Integer getId() {
@@ -98,5 +101,35 @@ public class Customer extends Person implements User, Identificator<Integer> {
 
     public void setOrders(ArrayList<Order> orders) {
         this.orders = orders;
+        setUsedBus();
+    }
+
+    private void setUsedBus() {
+        for(Order order: orders){
+            for (Service service: order.getServices()){
+                if(!service.isNeedDepartment()){
+                    usedBus=true;
+                    break;
+                }
+            }
+        }
+    }
+
+    public boolean isUsedBus() {
+        return usedBus;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", createdDate=" + createdDate +
+                ", orders=" + orders +
+                ", usedBus=" + usedBus +
+                '}';
     }
 }

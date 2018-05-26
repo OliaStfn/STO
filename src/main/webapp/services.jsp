@@ -45,11 +45,11 @@
                         <td>${service.name}</td>
                         <td>${service.category}</td>
                         <td>
-                            <c:if test="${sessionScope.userType=='customer'}">
+                            <c:if test="${sessionScope.userType!='admin'}">
                                 ${service.price}
                             </c:if>
                             <c:if test="${sessionScope.userType=='admin'}">
-                                <form action="services" method="post">
+                                <form action="/services" method="post">
                                     <input type="hidden" style="display: none"
                                            value="${service.id}" name="id">
                                     <input type="number" name="price" value="${service.price}">
@@ -61,6 +61,8 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <input id="add" class="btn col-md-2 pull-right" type="button" value="Додати нове замовлення"
+                   onclick="location.href='/add-new-order.jsp'">
         </div>
     </div>
 </div>

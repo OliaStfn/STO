@@ -58,6 +58,8 @@
                 </c:forEach>
                 </tbody>
             </table>
+            <input id="add" class="btn col-md-2 pull-right" type="button" value="Додати нове замовлення"
+                   onclick="location.href='/add-new-order.jsp'">
         </div>
     </div>
     <c:import url="footer.jsp"/>

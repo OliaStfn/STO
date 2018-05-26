@@ -4,9 +4,7 @@ import DAO.DaoException;
 import DAO.DaoFactory;
 import DAO.GenericDao;
 import DAO.mySQL.Factory;
-import beans.Customer;
-import beans.Order;
-import beans.Service;
+import beans.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +19,49 @@ import java.util.HashSet;
 @WebServlet(value = "/orders", name = "OrderServlet")
 public class OrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String carBrand = request.getParameter("carBrand");
+        String carModel = request.getParameter("carModel");
+        String licensePlate = request.getParameter("licensePlate");
+        String address = request.getParameter("address");
+        int serviceId = Integer.parseInt(request.getParameter("services"));
+        String description = request.getParameter("description");
+        int masterId = 0;
+        Customer customer = (Customer) request.getSession().getAttribute("user");
+        DaoFactory factory = new Factory();
+        try {
+            GenericDao dao = factory.getDao(factory.getConnection(), Master.class);
+            ArrayList<Master> masters = (ArrayList<Master>) dao.readAll();
+            boolean found = false;
+            for (Master master : masters) {
+                if (master.getStatus().equals(MasterStatus.FREE)) {
+                    masterId = master.getId();
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                request.setAttribute("message", "All masters are busy, please try later or " +
+                        "call to the manager");
+                request.getRequestDispatcher("/add-new-order.jsp").forward(request, response);
+            }
 
+            Order order = new Order();
+            order.setCarBrand(carBrand);
+            order.setCarModel(carModel);
+            order.setLicensePlate(licensePlate);
+            order.setReceptionPoint(address);
+            order.setDescription(description);
+            order.setMasterId(masterId);
+            Service service = new Service();
+            service.setId(serviceId);
+            order.addService(service);
+            order.setCustomerId(customer.getId());
+
+            dao = factory.getDao(factory.getConnection(), Order.class);
+            dao.create(order);
+        } catch (DaoException e) {
+        }
+        response.sendRedirect("/orders");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

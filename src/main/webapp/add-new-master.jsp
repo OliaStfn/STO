@@ -36,15 +36,14 @@
                            required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="email" placeholder="Електронна пошта"
-                           required>
-                </div>
-                <div class="form-group">
                     <input type="tel" class="form-control" name="mobile" placeholder="Номер телефону"
                            required>
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="post" placeholder="Посада" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="work-place" placeholder="Місце роботи" required>
                 </div>
 
                 <button type="submit" id="submit" class="btn btn-primary pull-right">Додати</button>
