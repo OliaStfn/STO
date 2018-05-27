@@ -13,7 +13,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a id="brand" class="navbar-brand" href="">СТО Люкс</a>
+            <a id="brand" class="navbar-brand" href="">${sessionScope.prop.getProperty(lang+".header.label")}</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
