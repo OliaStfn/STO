@@ -13,34 +13,34 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a id="brand" class="navbar-brand" href="">${sessionScope.prop.getProperty(lang+".header.label")}</a>
+            <a id="brand" class="navbar-brand" href="">${text.getProperty(lang.concat(".label"))}</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="home">Головна сторінка</a></li>
+                <li class="active"><a href="home">${text.getProperty(lang.concat(".home"))}</a></li>
                 <c:if test="${!sessionScope.containsKey('user') || sessionScope.userType!='admin'}">
-                    <li><a href="/services">Послуги</a></li>
+                    <li><a href="/services">${text.getProperty(lang.concat(".services"))}</a></li>
                 </c:if>
-                <li><a href="/vacancies">Вакансії</a></li>
+                <li><a href="/vacancies">${text.getProperty(lang.concat(".vacancies"))}</a></li>
                 <c:if test="${sessionScope.containsKey('user')}">
                     <c:if test="${sessionScope.userType=='customer'}">
-                        <li><a href="/orders">Мої замовлення</a></li>
+                        <li><a href="/orders">${text.getProperty(lang.concat(".orders"))}</a></li>
                     </c:if>
                     <c:if test="${sessionScope.userType=='admin'}">
-                        <li><a href="/orders">Замовлення</a></li>
-                        <li><a href="/services">Редагування послуг</a></li>
-                        <li><a href="/settings/customers">Клієнти</a></li>
-                        <li><a href="/settings/masters">Майстри</a></li>
+                        <li><a href="/orders">${text.getProperty(lang.concat(".orders"))}</a></li>
+                        <li><a href="/services">${text.getProperty(lang.concat(".edit_services"))}</a></li>
+                        <li><a href="/settings/customers">${text.getProperty(lang.concat(".customers"))}</a></li>
+                        <li><a href="/settings/masters">${text.getProperty(lang.concat(".masters"))}</a></li>
                     </c:if>
                 </c:if>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <c:if test="${sessionScope.containsKey('user')}">
-                    <li class="right"><a href="/authorization?type=logout">Вийти</a></li>
+                    <li class="right"><a href="/authorization?type=logout">${text.getProperty(lang.concat(".logout"))}</a></li>
                 </c:if>
                 <c:if test="${!sessionScope.containsKey('user')}">
-                    <li class="right"><a href="/authorization?type=login">Вхід</a></li>
-                    <li class="right"><a href="/authorization?type=register">Реєстрація</a></li>
+                    <li class="right"><a href="/authorization?type=login">${text.getProperty(lang.concat(".login"))}</a></li>
+                    <li class="right"><a href="/authorization?type=register">${text.getProperty(lang.concat(".register"))}</a></li>
                 </c:if>
             </ul>
         </div><!-- /.nav-collapse -->

@@ -25,7 +25,6 @@ public class CustomerServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DaoFactory factory = new Factory();
-        System.out.println("Do something!");
         try {
             GenericDao dao = factory.getDao(factory.getConnection(), Customer.class);
             ArrayList<Customer> customers = (ArrayList<Customer>) dao.readAll();

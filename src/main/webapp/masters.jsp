@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Послуги</title>
+    <title>${text.getProperty(lang.concat(".masters"))}</title>
     <meta content="text/html" charset="UTF-8">
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/libs/bootstrap.css">
@@ -17,10 +17,10 @@
     <div class="row">
         <div class="panel panel-primary filterable">
             <div class="panel-heading">
-                <h3 class="panel-title">Працівники</h3>
+                <h3 class="panel-title">${text.getProperty(lang.concat(".masters"))}</h3>
                 <div class="pull-right">
                     <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>
-                        Фільтрувати
+                        ${text.getProperty(lang.concat(".filter"))}
                     </button>
                 </div>
             </div>
@@ -28,16 +28,25 @@
                 <thead>
                 <tr class="filters">
                     <th style="width: 4%"><input type="text" class="form-control" placeholder="#" disabled></th>
-                    <th style="width: 7%"><input type="text" class="form-control" placeholder="Ім'я" disabled></th>
-                    <th style="width: 10%"><input type="text" class="form-control" placeholder="Прізвище" disabled></th>
+                    <th style="width: 7%"><input type="text" class="form-control"
+                                                 placeholder="${text.getProperty(lang.concat(".name"))}" disabled></th>
+                    <th style="width: 10%"><input type="text" class="form-control"
+                                                  placeholder="${text.getProperty(lang.concat(".surname"))}" disabled></th>
                     <th><input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
-                               class="form-control" placeholder="Дата народження" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Адреса" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Номер паспорту" disabled></th>
-                    <th><input type="tel" class="form-control" placeholder="Телефон" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Посада" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Місце роботи" disabled></th>
-                    <th style="width: 7%"><input type="text" class="form-control" placeholder="Статус" disabled></th>
+                               class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".born_date"))}" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".address"))}" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".masters.passport"))}" disabled></th>
+                    <th><input type="tel" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".phone"))}" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".post"))}" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".work_place"))}" disabled></th>
+                    <th style="width: 7%"><input type="text" class="form-control"
+                                                 placeholder="${text.getProperty(lang.concat(".masters.status"))}" disabled></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,7 +66,8 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <input id="add" class="btn col-md-2 pull-right" type="button" value="Додати нового майстра"
+            <input id="add" class="btn col-md-2 pull-right" type="button"
+                   value="${text.getProperty(lang.concat(".masters.add_master"))}"
                    onclick="location.href='/add-new-master.jsp'">
         </div>
     </div>

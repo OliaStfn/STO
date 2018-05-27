@@ -5,6 +5,7 @@ import DAO.DaoFactory;
 import DAO.GenericDao;
 import DAO.mySQL.Factory;
 import beans.Service;
+import util.Languages;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,6 +25,7 @@ public class HomeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Languages languages = new Languages();
         DaoFactory factory = new Factory();
         try {
             GenericDao dao = factory.getDao(factory.getConnection(), Service.class);
@@ -34,6 +36,8 @@ public class HomeServlet extends HttpServlet {
             HttpSession session = request.getSession();
             session.setAttribute("services", services);
             session.setAttribute("categories", categories);
+            session.setAttribute("text", languages.getText());
+            session.setAttribute("lang", "ua");
         } catch (DaoException e) {
         }
         request.getRequestDispatcher("/home.jsp").forward(request, response);

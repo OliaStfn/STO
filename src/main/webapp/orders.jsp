@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Мої замовлення</title>
+    <title>${text.getProperty(lang.concat(".orders"))}</title>
     <meta content="text/html" charset="UTF-8">
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/libs/bootstrap.css">
@@ -17,10 +17,10 @@
     <div class="row">
         <div class="panel panel-primary filterable">
             <div class="panel-heading">
-                <h3 class="panel-title">Послуги</h3>
+                <h3 class="panel-title">${text.getProperty(lang.concat(".orders"))}</h3>
                 <div class="pull-right">
                     <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>
-                        Фільтрувати
+                        ${text.getProperty(lang.concat(".filter"))}
                     </button>
                 </div>
             </div>
@@ -28,15 +28,23 @@
                 <thead>
                 <tr class="filters">
                     <th style="width: 5%"><input type="text" class="form-control" placeholder="#" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Марка машини" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Модель машини" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Номерний знак" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Послуга" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Вартість" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Місце ремонту" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Майстер" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".car_brand"))}" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".car_model"))}" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".license_plate"))}" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".orders.services"))}" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".orders.price"))}" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".orders.reception_point"))}" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".orders.master"))}" disabled></th>
                     <th><input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
-                               class="form-control" placeholder="Дата створення" disabled></th>
+                               class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".orders.created_date"))}" disabled></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,7 +66,7 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <input id="add" class="btn col-md-2 pull-right" type="button" value="Додати нове замовлення"
+            <input id="add" class="btn col-md-2 pull-right" type="button" value="${text.getProperty(lang.concat(".add_order"))}"
                    onclick="location.href='/add-new-order.jsp'">
         </div>
     </div>

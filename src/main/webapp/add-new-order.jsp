@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Додавання нового замовлення</title>
+    <title>${text.getProperty(lang.concat(".add_new_order.title"))}</title>
     <meta content="text/html" charset="UTF-8">
 
     <link href="/css/style.css" rel="stylesheet"/>
@@ -24,21 +24,26 @@
         <div class="form-area">
             <form accept-charset="UTF-8" action="/settings/orders" method="post" role="form">
                 <br style="clear:both">
-                <h3 style="margin-bottom: 25px; text-align: center;">Нове замовлення</h3>
+                <h3 style="margin-bottom: 25px; text-align: center;">${text.getProperty(lang.concat(".add_new_order.form_title"))}</h3>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="carBrand" placeholder="Марка машини" required>
+                    <input type="text" class="form-control" name="carBrand"
+                           placeholder="${text.getProperty(lang.concat(".car_brand"))}" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="carModel" placeholder="Модель машини" required>
+                    <input type="text" class="form-control" name="carModel"
+                           placeholder="${text.getProperty(lang.concat(".car_model"))}" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="licensePlate" placeholder="Номерний знак" required>
+                    <input type="text" class="form-control" name="licensePlate"
+                           placeholder="${text.getProperty(lang.concat(".license_plate"))}" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" name="address" placeholder="Місце прийому машини"
+                    <input type="text" class="form-control" name="address"
+                           placeholder="${text.getProperty(lang.concat(".add_new_order.address"))}"
                            required>
                 </div>
-                <textarea name="description" placeholder="Детальний опис проблеми"></textarea>
+                <textarea name="description"
+                          placeholder="${text.getProperty(lang.concat(".add_new_order.description"))}"></textarea>
                 <select class="col-md-3" name="services">
                     <c:forEach var="category" items="${sessionScope.categories}">
                         <optgroup label="${category}">
@@ -51,7 +56,8 @@
                     </c:forEach>
                 </select>
                 <br>
-                <button type="submit" id="submit" class="btn btn-primary pull-right">Створити замовлення</button>
+                <button type="submit" id="submit" class="btn btn-primary pull-right">
+                ${text.getProperty(lang.concat(".add_new_order.add"))}</button>
             </form>
         </div>
     </div>

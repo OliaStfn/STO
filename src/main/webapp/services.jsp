@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Послуги</title>
+    <title>${text.getProperty(lang.concat(".services"))}</title>
     <meta content="text/html" charset="UTF-8">
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/libs/bootstrap.css">
@@ -17,10 +17,10 @@
     <div class="row">
         <div class="panel panel-primary filterable">
             <div class="panel-heading">
-                <h3 class="panel-title">Послуги</h3>
+                <h3 class="panel-title">${text.getProperty(lang.concat(".services"))}</h3>
                 <div class="pull-right">
                     <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>
-                        Фільтрувати
+                        ${text.getProperty(lang.concat(".filter"))}
                     </button>
                 </div>
             </div>
@@ -28,14 +28,18 @@
                 <thead>
                 <tr class="filters">
                     <th style="width: 5%"><input type="text" class="form-control" placeholder="#" disabled></th>
-                    <th><input type="text" class="form-control" placeholder="Ім'я послуги" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".services.name"))}" disabled></th>
                     <c:if test="${requestScope.containsKey('category')}">
-                        <th><input type="text" class="form-control" value="${category}" placeholder="Тип послуги"></th>
+                        <th><input type="text" class="form-control" value="${category}"
+                                   placeholder="${text.getProperty(lang.concat(".services.category"))}"></th>
                     </c:if>
                     <c:if test="${!requestScope.containsKey('category')}">
-                        <th><input type="text" class="form-control" placeholder="Тип послуги" disabled></th>
+                        <th><input type="text" class="form-control"
+                                   placeholder="${text.getProperty(lang.concat(".services.category"))}" disabled></th>
                     </c:if>
-                    <th><input type="text" class="form-control" placeholder="Вартість послуги" disabled></th>
+                    <th><input type="text" class="form-control"
+                               placeholder="${text.getProperty(lang.concat(".services.price"))}" disabled></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -53,7 +57,8 @@
                                     <input type="hidden" style="display: none"
                                            value="${service.id}" name="id">
                                     <input type="number" name="price" value="${service.price}">
-                                    <input class="navbar-right" type="submit" value="Зберегти зміни">
+                                    <input class="navbar-right" type="submit"
+                                           value="${text.getProperty(lang.concat(".services.save"))}">
                                 </form>
                             </c:if>
                         </td>
@@ -61,7 +66,7 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <input id="add" class="btn col-md-2 pull-right" type="button" value="Додати нове замовлення"
+            <input id="add" class="btn col-md-2 pull-right" type="button" value="${text.getProperty(lang.concat(".add_order"))}"
                    onclick="location.href='/add-new-order.jsp'">
         </div>
     </div>
