@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>${text.getProperty(lang.concat(".home"))}</title>
+    <title>${text.getProperty("home")}</title>
     <meta content="text/html" charset="UTF-8">
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/libs/bootstrap.css">
@@ -13,8 +13,8 @@
 <c:import url="header.jsp"/>
 <div class="col-xs-12 col-sm-12 content">
     <div class="jumbotron" style="padding-left: 15px;">
-        <h1>${text.getProperty(lang.concat(".home.jumbtron.slogan"))}</h1>
-        <p>${text.getProperty(lang.concat(".home.jumbtron.description"))}
+        <h1>${text.getProperty("home.jumbtron.slogan")}</h1>
+        <p>${text.getProperty("home.jumbtron.description")}
         </p>
     </div>
     <div class="row">
@@ -22,17 +22,17 @@
             <div class="col-xs-6 col-lg-4">
                 <h2>${category}</h2>
                 <p>
-                        ${text.getProperty(lang.concat(".home.services"))}
+                        ${text.getProperty("home.services")}
                 <ul>
                     <c:forEach var="service" items="${sessionScope.services}">
                         <c:if test="${service.category == category}">
-                            <li>${service.name} - ${service.price} ${text.getProperty(lang.concat(".money"))}.</li>
+                            <li>${service.name} - ${service.price} ${text.getProperty("money")}.</li>
                         </c:if>
                     </c:forEach>
                 </ul>
                 </p>
                 <p><a class="btn btn-default" href="/services?category=${category}"
-                      role="button">${text.getProperty(lang.concat(".home.more_information"))} »</a></p>
+                      role="button">${text.getProperty("home.more_information")} »</a></p>
             </div>
             <!--/.col-xs-6s.col-lg-4-->
         </c:forEach>

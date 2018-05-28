@@ -35,3 +35,7 @@
     transition: 0.8s;
     -webkit-transition:  0.8s;
 }
+
+ul img{
+    width: 15px;
+}

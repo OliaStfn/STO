@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${text.getProperty(lang.concat(".customers"))}</title>
+    <title>${text.getProperty("customers")}</title>
     <meta content="text/html" charset="UTF-8">
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/libs/bootstrap.css">
@@ -17,10 +17,10 @@
     <div class="row">
         <div class="panel panel-primary filterable">
             <div class="panel-heading">
-                <h3 class="panel-title">${text.getProperty(lang.concat(".customers"))}</h3>
+                <h3 class="panel-title">${text.getProperty("customers")}</h3>
                 <div class="pull-right">
                     <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span>
-                        ${text.getProperty(lang.concat(".filter"))}
+                        ${text.getProperty("filter")}
                     </button>
                 </div>
             </div>
@@ -29,19 +29,19 @@
                 <tr class="filters">
                     <th style="width: 5%"><input type="text" class="form-control" placeholder="#" disabled></th>
                     <th style="width: 8%"><input type="text" class="form-control"
-                                                 placeholder="${text.getProperty(lang.concat(".name"))}" disabled></th>
+                                                 placeholder="${text.getProperty("name")}" disabled></th>
                     <th style="width: 10%"><input type="text" class="form-control"
-                                                  placeholder="${text.getProperty(lang.concat(".surname"))}" disabled></th>
+                                                  placeholder="${text.getProperty("surname")}" disabled></th>
                     <th><input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
-                               class="form-control" placeholder="${text.getProperty(lang.concat(".born_date"))}" disabled></th>
+                               class="form-control" placeholder="${text.getProperty("born_date")}" disabled></th>
                     <th><input type="email" class="form-control"
-                               placeholder="${text.getProperty(lang.concat(".email"))}" disabled></th>
+                               placeholder="${text.getProperty("email")}" disabled></th>
                     <th style="width: 8%"><input type="tel" class="form-control"
-                                                 placeholder="${text.getProperty(lang.concat(".phone"))}" disabled></th>
+                                                 placeholder="${text.getProperty("phone")}" disabled></th>
                     <th><input type="datetime" class="form-control"
-                               placeholder="${text.getProperty(lang.concat(".customers.register_date"))}" disabled></th>
+                               placeholder="${text.getProperty("customers.register_date")}" disabled></th>
                     <th><input type="text" class="form-control"
-                               placeholder="${text.getProperty(lang.concat(".customers.used_bus"))}" disabled></th>
+                               placeholder="${text.getProperty("customers.used_bus")}" disabled></th>
                 </tr>
                 </thead>
                 <tbody>

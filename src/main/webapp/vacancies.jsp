@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>${text.getProperty(lang.concat(".vacancies"))}</title>
+    <title>${text.getProperty("vacancies")}</title>
     <meta content="text/html" charset="UTF-8">
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/libs/bootstrap.css">
@@ -14,26 +14,26 @@
 <div class="col-xs-12 col-sm-12 content">
     <div class="row">
         <div class="col-xs-6 col-lg-6">
-            <h1>${text.getProperty(lang.concat(".vacancies.name1"))}</h1>
+            <h1>${text.getProperty("vacancies.name1")}</h1>
             <div style="margin-top: 58px;">
-                ${text.getProperty(lang.concat(".vacancies.conditions1"))}
+                ${text.getProperty("vacancies.conditions1")}
             </div>
             <div>
-                ${text.getProperty(lang.concat(".vacancies.requirements1"))}
+                ${text.getProperty("vacancies.requirements1")}
             </div>
         </div>
         <div class="col-xs-6 col-lg-6">
-            <h1>${text.getProperty(lang.concat(".vacancies.name2"))}</h1>
+            <h1>${text.getProperty("vacancies.name2")}</h1>
             <div>
-                ${text.getProperty(lang.concat(".vacancies.conditions2"))}
+                ${text.getProperty("vacancies.conditions2")}
             </div>
             <div>
-                ${text.getProperty(lang.concat(".vacancies.requirements2"))}
+                ${text.getProperty("vacancies.requirements2")}
             </div>
         </div>
     </div>
     <div align="center">
-        <h3>${text.getProperty(lang.concat(".vacancies.contacts"))}</h3>
+        <h3>${text.getProperty("vacancies.contacts")}</h3>
         <h4>+38 (066) 222 33 79</h4>
     </div>
 </div>

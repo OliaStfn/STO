@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>${text.getProperty(lang.concat(".authorization"))}</title>
+    <title>${text.getProperty("authorization")}</title>
     <meta content="text/html" charset="UTF-8">
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/libs/bootstrap.css">
@@ -26,11 +26,11 @@
                             <c:set var="forgot" value="display: none;"/>
                             <div class="col-xs-6">
                                 <a href="authorization?type=login" class="active" id="login-form-link">
-                                ${text.getProperty(lang.concat(".login"))}</a>
+                                ${text.getProperty("login")}</a>
                             </div>
                             <div class="col-xs-6">
                                 <a href="authorization?type=register" id="register-form-link">
-                                ${text.getProperty(lang.concat(".register"))}</a>
+                                ${text.getProperty("register")}</a>
                             </div>
                         </c:if>
                         <c:if test="${param.type == 'register'}">
@@ -39,11 +39,11 @@
                             <c:set var="forgot" value="display: none;"/>
                             <div class="col-xs-6">
                                 <a href="authorization?type=login" id="login-form-link">
-                                ${text.getProperty(lang.concat(".login"))}</a>
+                                ${text.getProperty("login")}</a>
                             </div>
                             <div class="col-xs-6">
                                 <a href="authorization?type=register" class="active"
-                                   id="register-form-link">${text.getProperty(lang.concat(".register"))}</a>
+                                   id="register-form-link">${text.getProperty("register")}</a>
                             </div>
                         </c:if>
                     </div>
@@ -56,27 +56,27 @@
                                 <div class="form-group">
                                     <span class="text-center" style="color: red">
                                     ${requestScope.message}</span><br>
-                                    <label for="username">${text.getProperty(lang.concat(".username"))}</label>
+                                    <label for="username">${text.getProperty("username")}</label>
                                     <input type="text" name="username" id="username" tabindex="1"
                                            class="form-control"
-                                           placeholder="${text.getProperty(lang.concat(".username"))}" value="">
+                                           placeholder="${text.getProperty("username")}" value="">
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">${text.getProperty(lang.concat(".password"))}</label>
+                                    <label for="password">${text.getProperty("password")}</label>
                                     <input type="password" name="password" id="password" tabindex="2"
                                            class="form-control"
-                                           placeholder="${text.getProperty(lang.concat(".password"))}">
+                                           placeholder="${text.getProperty("password")}">
                                 </div>
                                 <div class="form-group col-xs-6">
                                     <a href="" id="forgot-form-link">
-                                    ${text.getProperty(lang.concat(".login.forgot_password"))}</a>
+                                    ${text.getProperty("login.forgot_password")}</a>
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
                                             <input type="submit" name="login-submit" id="login-submit" tabindex="4"
                                                    class="form-control btn btn-login"
-                                                   value="${text.getProperty(lang.concat(".login.submit"))}">
+                                                   value="${text.getProperty("login.submit")}">
                                         </div>
                                     </div>
                                 </div>
@@ -85,44 +85,44 @@
                                 <div class="form-group">
                                     <span class="text-center" style="color: red">
                                     ${requestScope.message}</span><br>
-                                    <label for="name">${text.getProperty(lang.concat(".name"))}</label>
+                                    <label for="name">${text.getProperty("name")}</label>
                                     <input type="text" name="name" id="name" tabindex="1"
                                            class="form-control"
-                                           placeholder="${text.getProperty(lang.concat(".name"))}" value="" required>
+                                           placeholder="${text.getProperty("name")}" value="" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="surname">${text.getProperty(lang.concat(".surname"))}</label>
+                                    <label for="surname">${text.getProperty("surname")}</label>
                                     <input type="text" name="surname" id="surname" tabindex="2"
                                            class="form-control"
-                                           placeholder="${text.getProperty(lang.concat(".surname"))}" required>
+                                           placeholder="${text.getProperty("surname")}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="birthDay">${text.getProperty(lang.concat(".born_date"))}</label>
+                                    <label for="birthDay">${text.getProperty("born_date")}</label>
                                     <input type="text" onfocus="this.type='date'"
                                            name="birthDay" id="birthDay" tabindex="2"
                                            class="form-control"
-                                           placeholder="${text.getProperty(lang.concat(".born_date"))}" required>
+                                           placeholder="${text.getProperty("born_date")}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="username">${text.getProperty(lang.concat(".username"))}</label>
+                                    <label for="username">${text.getProperty("username")}</label>
                                     <input type="text" name="username" id="username" tabindex="3"
                                            class="form-control"
-                                           placeholder="${text.getProperty(lang.concat(".username"))}" value="" required>
+                                           placeholder="${text.getProperty("username")}" value="" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">${text.getProperty(lang.concat(".password"))}</label>
+                                    <label for="password">${text.getProperty("password")}</label>
                                     <input type="password" name="password" id="password" tabindex="4"
                                            class="form-control"
-                                           placeholder="${text.getProperty(lang.concat(".password"))}" required>
+                                           placeholder="${text.getProperty("password")}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">${text.getProperty(lang.concat(".email"))}</label>
+                                    <label for="email">${text.getProperty("email")}</label>
                                     <input type="email" name="email" id="email"
                                            tabindex="5" class="form-control"
-                                           placeholder="${text.getProperty(lang.concat(".email"))}" required>
+                                           placeholder="${text.getProperty("email")}" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">${text.getProperty(lang.concat(".phone"))}</label>
+                                    <label for="phone">${text.getProperty("phone")}</label>
                                     <input type="tel" name="phone" id="phone"
                                            tabindex="6" class="form-control"
                                            placeholder="+38(___)-___-__-__" required>
@@ -132,7 +132,7 @@
                                         <div class="col-sm-6 col-sm-offset-3">
                                             <input type="submit" name="register-submit" id="register-submit"
                                                    tabindex="7" class="form-control btn btn-register"
-                                                   value="${text.getProperty(lang.concat(".register.submit"))}">
+                                                   value="${text.getProperty("register.submit")}">
                                         </div>
                                     </div>
                                 </div>
@@ -140,17 +140,17 @@
                             <form accept-charset="UTF-8" id="forgot-form" action="/authorization" method="post" role="form"
                                   style="display: none">
                                 <div class="form-group">
-                                    <label for="email">${text.getProperty(lang.concat(".email"))}</label>
+                                    <label for="email">${text.getProperty("email")}</label>
                                     <input type="email" name="username" id="email" tabindex="1"
                                            class="form-control"
-                                           placeholder="${text.getProperty(lang.concat(".email"))}" value="">
+                                           placeholder="${text.getProperty("email")}" value="">
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
                                             <input type="submit" name="forgot-submit" id="forgot-submit" tabindex="2"
                                                    class="form-control btn btn-login"
-                                                   value="${text.getProperty(lang.concat(".forgot.submit"))}">
+                                                   value="${text.getProperty("forgot.submit")}">
                                         </div>
                                     </div>
                                 </div>
