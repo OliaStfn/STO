@@ -21,7 +21,7 @@
         <c:forEach var="category" items="${sessionScope.categories}">
             <div class="col-xs-6 col-lg-4">
                 <h2>${category}</h2>
-                <p>
+                <p
                         ${text.getProperty("home.services")}
                 <ul>
                     <c:forEach var="service" items="${sessionScope.services}">

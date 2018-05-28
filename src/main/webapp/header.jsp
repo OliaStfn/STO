@@ -21,7 +21,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="home">${text.getProperty("home")}</a></li>
+                <li class="active"><a href="/home">${text.getProperty("home")}</a></li>
                 <c:if test="${!sessionScope.containsKey('user') || sessionScope.userType!='admin'}">
                     <li><a href="/services">${text.getProperty("services")}</a></li>
                 </c:if>
@@ -32,7 +32,7 @@
                     </c:if>
                     <c:if test="${sessionScope.userType=='admin'}">
                         <li><a href="/orders">${text.getProperty("orders")}</a></li>
-                        <li><a href="/services">${text.getProperty("edit_services")}</a></li>
+                        <li><a href="/services">${text.getProperty("header.edit_services")}</a></li>
                         <li><a href="/settings/customers">${text.getProperty("customers")}</a></li>
                         <li><a href="/settings/masters">${text.getProperty("masters")}</a></li>
                     </c:if>

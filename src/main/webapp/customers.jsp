@@ -30,7 +30,7 @@
                     <th style="width: 5%"><input type="text" class="form-control" placeholder="#" disabled></th>
                     <th style="width: 8%"><input type="text" class="form-control"
                                                  placeholder="${text.getProperty("name")}" disabled></th>
-                    <th style="width: 10%"><input type="text" class="form-control"
+                    <th style="width: 8%"><input type="text" class="form-control"
                                                   placeholder="${text.getProperty("surname")}" disabled></th>
                     <th><input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
                                class="form-control" placeholder="${text.getProperty("born_date")}" disabled></th>

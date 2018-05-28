@@ -27,10 +27,10 @@
             <table class="table">
                 <thead>
                 <tr class="filters">
-                    <th style="width: 4%"><input type="text" class="form-control" placeholder="#" disabled></th>
+                    <th style="width: 4%"><input style="width: 4%" type="text" class="form-control" placeholder="#" disabled></th>
                     <th style="width: 7%"><input type="text" class="form-control"
                                                  placeholder="${text.getProperty("name")}" disabled></th>
-                    <th style="width: 10%"><input type="text" class="form-control"
+                    <th style="width: 8%"><input type="text" class="form-control"
                                                   placeholder="${text.getProperty("surname")}" disabled></th>
                     <th><input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
                                class="form-control"
@@ -41,9 +41,9 @@
                                placeholder="${text.getProperty("masters.passport")}" disabled></th>
                     <th><input type="tel" class="form-control"
                                placeholder="${text.getProperty("phone")}" disabled></th>
-                    <th><input type="text" class="form-control"
+                    <th style="width: 4%; height: auto;"><input type="text" class="form-control"
                                placeholder="${text.getProperty("post")}" disabled></th>
-                    <th><input type="text" class="form-control"
+                    <th style="width: 4%; height: auto;"><input type="text" class="form-control"
                                placeholder="${text.getProperty("work_place")}" disabled></th>
                     <th style="width: 7%"><input type="text" class="form-control"
                                                  placeholder="${text.getProperty("masters.status")}" disabled></th>
