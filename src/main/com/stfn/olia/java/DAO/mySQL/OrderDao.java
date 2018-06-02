@@ -132,15 +132,31 @@ public class OrderDao extends AbstractDao<Order, Integer> {
     }
 
     @Override
+    public void delete(Order obj) throws DaoException {
+        try (PreparedStatement statement =
+                     connection.prepareStatement("DELETE FROM sto.Service_has_Order WHERE order_id=?;")) {
+            statement.setInt(1, obj.getId());
+            statement.execute();
+            try (PreparedStatement preparedStatement = connection.prepareStatement(getDeleteQuery())) {
+                preparedStatement.setInt(1, obj.getId());
+                preparedStatement.execute();
+            }
+        } catch (Exception e) {
+            log.error(e);
+            throw new DaoException();
+        }
+    }
+
+    @Override
     public Order create(Order object) throws DaoException {
         Order rezult = super.create(object);
-        if (rezult.getServices() == null || rezult.getServices().size() == 0) return rezult;
+        if (!(rezult.getServices() == null && object.getServices().isEmpty())) return rezult;
         int count = rezult.getServices().size();
         String query = "INSERT INTO Service_has_Order (service_id,order_id) VALUES ";
         for (Service service : rezult.getServices()) {
             count--;
             query += "(" + service.getId() + "," + rezult.getId() + ")";
-            if (count != 0) query += ", ";
+            if (count != 0) query += ",";
         }
         query += ";";
         try (PreparedStatement statement = connection.prepareStatement(query)) {

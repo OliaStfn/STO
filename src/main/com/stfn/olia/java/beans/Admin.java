@@ -2,9 +2,10 @@ package beans;
 
 import DAO.Identificator;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Admin implements User, Identificator<Integer> {
+public class Admin implements User, Identificator<Integer>, Serializable {
     private int id;
     private String login;
     private String password;

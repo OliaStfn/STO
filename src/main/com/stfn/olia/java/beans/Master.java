@@ -2,9 +2,10 @@ package beans;
 
 import DAO.Identificator;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Master extends Person implements Identificator<Integer> {
+public class Master extends Person implements Identificator<Integer>, Serializable {
     private int id;
     private String post;
     private String workPlace;

@@ -28,23 +28,24 @@
                 <thead>
                 <tr class="filters">
                     <th style="width: 5%"><input type="text" class="form-control" placeholder="#" disabled></th>
-                    <th><input type="text" class="form-control"
+                    <th style="width: 9%"><input type="text" class="form-control"
                                placeholder="${text.getProperty("car_brand")}" disabled></th>
-                    <th><input type="text" class="form-control"
+                    <th style="width: 9%"><input type="text" class="form-control"
                                placeholder="${text.getProperty("car_model")}" disabled></th>
-                    <th><input type="text" class="form-control"
+                    <th style="width: 11%"><input type="text" class="form-control"
                                placeholder="${text.getProperty("license_plate")}" disabled></th>
-                    <th><input type="text" class="form-control"
+                    <th style="width: 9%"><input type="text" class="form-control"
                                placeholder="${text.getProperty("orders.services")}" disabled></th>
-                    <th><input type="text" class="form-control"
+                    <th style="width:8%;"><input type="text" class="form-control"
                                placeholder="${text.getProperty("orders.price")}" disabled></th>
-                    <th><input type="text" class="form-control"
+                    <th style="width: 15%"><input type="text" class="form-control"
                                placeholder="${text.getProperty("orders.reception_point")}" disabled></th>
-                    <th><input type="text" class="form-control"
+                    <th style="width: 10%"><input type="text" class="form-control"
                                placeholder="${text.getProperty("orders.master")}" disabled></th>
                     <th><input type="text" onfocus="(this.type='date')" onblur="(this.type='text')"
-                               class="form-control"
-                               placeholder="${text.getProperty("orders.created_date")}" disabled></th>
+                                           class="form-control"
+                                           placeholder="${text.getProperty("orders.created_date")}" disabled></th>
+                    <th style="width: 7%">${text.getProperty("orders.action")}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -56,17 +57,26 @@
                         <td>${order.licensePlate}</td>
                         <td>
                             <c:forEach var="service" items="${order.services}">
-                                ${service}<br>
+                                ${service.name}<br>
                             </c:forEach>
                         </td>
                         <td>${order.allPrice}</td>
-                        <td>${order.receptionPoint}</td>
+                        <td><a href="/orders?reception_point=${order.receptionPoint}">${order.receptionPoint}</a></td>
                         <td>${order.masterId}</td>
+                        <td>${order.orderDate}</td>
+                        <td>
+                            <c:if test="${sessionScope.userType == 'customer'}">
+                                <form action="/orders/delete" method="post">
+                                    <input type="hidden" style="display: none" name="id" value="${order.id}">
+                                    <input class="btn btn-danger" type="submit" value="${text.getProperty("orders.delete")}">
+                                </form>
+                            </c:if>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
-            <input id="add" class="btn col-md-2 pull-right" type="button" 
+            <input id="add" class="btn col-md-2 pull-right" type="button"
                    value="${text.getProperty("add_order")}"
                    onclick="location.href='/add-new-order.jsp'">
         </div>

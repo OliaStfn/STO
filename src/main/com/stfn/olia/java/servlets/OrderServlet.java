@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -66,7 +67,27 @@ public class OrderServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         DaoFactory factory = new Factory();
-        if (request.getParameterMap().containsKey("new")) {
+        if (request.getParameterMap().containsKey("reception_point")) {
+            String receptionPoint = request.getParameter("reception_point");
+            try {
+                GenericDao dao = factory.getDao(factory.getConnection(), Order.class);
+                ArrayList<Order> orders = (ArrayList<Order>) dao.readAll();
+                HashSet users = new HashSet();
+                dao = factory.getDao(factory.getConnection(), Customer.class);
+                for (Order order : orders) {
+                    if (order.getReceptionPoint().equals(receptionPoint) &&
+                            !order.getOrderDate().isBefore(LocalDate.now())) {
+                        users.add((Customer) dao.read(order.getCustomerId()));
+                    }
+                }
+                HttpSession session = request.getSession();
+                session.setAttribute("customers", users);
+                request.setAttribute("reception_point", receptionPoint);
+                request.getRequestDispatcher("/customers-for-place-and-date.jsp").
+                        forward(request, response);
+            } catch (DaoException e) {
+            }
+        } else if (request.getParameterMap().containsKey("new")) {
             try {
                 GenericDao dao = factory.getDao(factory.getConnection(), Service.class);
                 ArrayList<Service> services = (ArrayList<Service>) dao.readAll();
@@ -93,9 +114,12 @@ public class OrderServlet extends HttpServlet {
                     }
                 }
                 session.setAttribute("orders", orders);
-            } catch (DaoException e) {
+            } catch (Exception e) {
+                request.getRequestDispatcher("/authorization.jsp").forward(request, response);
             }
+            request.setAttribute("message", "You are not logged!");
             request.getRequestDispatcher("orders.jsp").forward(request, response);
         }
     }
+
 }

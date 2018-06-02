@@ -2,10 +2,11 @@ package beans;
 
 import DAO.Identificator;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
 
-public class Order implements Identificator<Integer> {
+public class Order implements Identificator<Integer>, Serializable {
     private int id;
     private String carBrand;
     private String carModel;
@@ -29,7 +30,7 @@ public class Order implements Identificator<Integer> {
         this.status = OrderStatus.WAITING;
         this.masterId = 0;
         this.customerId = 0;
-        this.services = new HashSet<>(0);
+        this.services = new HashSet<>();
         setAllPrice();
     }
 
@@ -44,7 +45,7 @@ public class Order implements Identificator<Integer> {
         this.status = status;
         this.masterId = masterId;
         this.customerId = customerId;
-        this.services = new HashSet<>(0);
+        this.services = new HashSet<>();
         setAllPrice();
     }
 

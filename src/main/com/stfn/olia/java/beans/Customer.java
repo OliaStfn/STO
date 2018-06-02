@@ -2,11 +2,12 @@ package beans;
 
 import DAO.Identificator;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Customer extends Person implements User, Identificator<Integer> {
+public class Customer extends Person implements User, Identificator<Integer>,Serializable {
     private int id;
     private String login;
     private String password;

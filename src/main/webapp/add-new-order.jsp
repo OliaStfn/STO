@@ -22,7 +22,7 @@
 <div class="container content">
     <div class="col-md-6 col-md-offset-3">
         <div class="form-area">
-            <form accept-charset="UTF-8" action="/settings/orders" method="post" role="form">
+            <form accept-charset="UTF-8" action="/orders" method="post" role="form">
                 <br style="clear:both">
                 <h3 style="margin-bottom: 25px; text-align: center;">${text.getProperty("add_new_order.form_title")}</h3>
                 <div class="form-group">

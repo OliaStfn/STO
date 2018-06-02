@@ -1,8 +1,9 @@
 package beans;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Person {
+public abstract class Person implements Serializable {
     private String name;
     private String surname;
     LocalDate dateOfBirth;

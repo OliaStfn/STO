@@ -2,7 +2,9 @@ package beans;
 
 import DAO.Identificator;
 
-public class Service implements Identificator<Integer> {
+import java.io.Serializable;
+
+public class Service implements Identificator<Integer>, Serializable {
     private int id;
     private String name;
     private String category;
