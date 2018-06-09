@@ -7,7 +7,7 @@
     <link href="/css/style.css" rel="stylesheet"/>
     <link rel="stylesheet" href="/libs/bootstrap.css">
     <script src="/libs/jquery-3.3.1.min.js"></script>
-    <script src=/"libs/bootstrap.js"></script>
+    <script src="/libs/bootstrap.js"></script>
 </head>
 <body>
 <c:import url="header.jsp"/>
