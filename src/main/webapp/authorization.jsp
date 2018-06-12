@@ -50,8 +50,6 @@
                             <form accept-charset="UTF-8" id="login-form" action="/login" method="post" role="form"
                                   style="${login}">
                                 <div class="form-group">
-                                    <span class="text-center" style="color: red">
-                                        ${requestScope.message}</span><br>
                                     <label for="username-login">${text.getProperty("username")}</label>
                                     <input type="text" name="username" id="username-login" tabindex="1"
                                            class="form-control username"
